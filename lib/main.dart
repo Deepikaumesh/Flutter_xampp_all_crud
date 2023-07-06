@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'Main Screen.dart';
+import 'flutter xampp crud/homepage.dart';
 import 'flutter xampp crud/splashscreen.dart';
 
 var ip_address ='192.168.29.64';
@@ -15,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
 
-      home: Splashscreen(),
+      home: HomePage(),
     );
   }
 }

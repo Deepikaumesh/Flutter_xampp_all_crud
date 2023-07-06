@@ -108,6 +108,9 @@ class _Display_DataState extends State<Display_Data> {
                                   ),
                                   leading:  GestureDetector(
                                     onTap: (){
+                                      setState(() {
+
+                                      });
                                       Navigator.pushReplacement(
                                           context,
                                           MaterialPageRoute(
@@ -121,7 +124,17 @@ class _Display_DataState extends State<Display_Data> {
                                   ),
                                   trailing: GestureDetector(
                                       onTap: (){
-                                        delrecord(snapshot.data[index].id);
+
+                                        setState(() {
+                                          delrecord(snapshot.data[index].id);
+                                          Navigator.pushReplacement(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>  Display_Data()));
+
+
+                                        });
+
                                         Fluttertoast.showToast(
                                             msg: 'Data Deleted ',
                                             toastLength: Toast.LENGTH_LONG,
@@ -129,10 +142,6 @@ class _Display_DataState extends State<Display_Data> {
                                             timeInSecForIosWeb: 1,
                                             backgroundColor: Colors.blueGrey);
 
-                                        Navigator.pushReplacement(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>  Display_Data()));
 
 
                                       },

@@ -40,6 +40,8 @@ dependencies:
   fluttertoast:
   image_picker:
   google_fonts:
+  geolocator:
+  geocoding:
 
 dev_dependencies:
   flutter_test:

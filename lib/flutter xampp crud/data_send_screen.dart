@@ -6,7 +6,7 @@ import 'package:flutter_xampp_crud/main.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 
-import 'Display_Data.dart';
+
 
 class data_send_screen extends StatefulWidget {
   const data_send_screen({Key? key}) : super(key: key);
@@ -16,8 +16,10 @@ class data_send_screen extends StatefulWidget {
 }
 
 class _data_send_screenState extends State<data_send_screen> {
+
   TextEditingController namecontroller = TextEditingController();
   TextEditingController agecontroller = TextEditingController();
+  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
   late bool status;
   late String message;
@@ -35,7 +37,7 @@ class _data_send_screenState extends State<data_send_screen> {
 
 
 
-  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -123,7 +125,7 @@ class _data_send_screenState extends State<data_send_screen> {
                       },
                       child: Text("SUBMIT"),
                     ),
-                   // Text(status ? message : message,style: TextStyle(color: Colors.red.shade900),),
+                    Text(status ? message : message,style: TextStyle(color: Colors.red.shade900),),
 
 
 

@@ -151,10 +151,16 @@ class _Display_Data_with_imageState extends State<Display_Data_with_image> {
                                                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Edit_Data_with_image(data_user: snapshot.data[index],)));
 
                                                   }, icon: Icon(Icons.edit)),
-                                                  IconButton(onPressed: (){
-                                                    delrecord(snapshot.data[index].id);
 
-                                                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Display_Data_with_image()));
+
+                                                  IconButton(onPressed: (){
+                                                    setState(() {
+                                                      delrecord(snapshot.data[index].id);
+
+                                                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Display_Data_with_image()));
+
+                                                    });
+
 
 
                                                     Fluttertoast.showToast(
