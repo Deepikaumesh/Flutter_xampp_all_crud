@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "738691640244",
+    "project_id": "internship-crud-625c1",
+    "storage_bucket": "internship-crud-625c1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:738691640244:android:d49673824b6000054fa0e1",
+        "android_client_info": {
+          "package_name": "com.example.flutter_xampp_crud"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "738691640244-40d02e11b9bv70ti21tpj6ev6gid1jve.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAz_kbxgQJjxIkj4n5V9vsdFwQGmGNWd9s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "738691640244-40d02e11b9bv70ti21tpj6ev6gid1jve.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

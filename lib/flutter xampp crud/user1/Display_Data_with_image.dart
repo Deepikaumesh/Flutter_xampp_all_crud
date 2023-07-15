@@ -157,7 +157,7 @@ class _Display_Data_with_imageState extends State<Display_Data_with_image> {
                                                     setState(() {
                                                       delrecord(snapshot.data[index].id);
 
-                                                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Display_Data_with_image()));
+                                                      //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Display_Data_with_image()));
 
                                                     });
 
@@ -243,6 +243,10 @@ class _Display_Data_with_imageState extends State<Display_Data_with_image> {
     var resoponse = jsonDecode(res.body);
     if (resoponse["success"] == "true") {
       print("success");
+      setState(() {
+       // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Display_Data_with_image()));
+      });
+
     }
   }
 }

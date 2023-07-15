@@ -2,34 +2,43 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_xampp_crud/main.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 
-import '../main.dart';
+import 'Display_Data_with_image.dart';
+import 'Send_Data_with_image.dart';
 
-class Send_data_With_Image extends StatefulWidget {
+class Edit_Data_with_image extends StatefulWidget {
+  final Datamodels data_user;
+
+  Edit_Data_with_image({required this.data_user});
+
   @override
-  _Send_data_With_ImageState createState() => _Send_data_With_ImageState();
+  _Edit_Data_with_imageState createState() => _Edit_Data_with_imageState();
 }
 
-class _Send_data_With_ImageState extends State<Send_data_With_Image> {
+class _Edit_Data_with_imageState extends State<Edit_Data_with_image> {
   var _image;
   final picker = ImagePicker();
 
   TextEditingController name = TextEditingController();
   TextEditingController price = TextEditingController();
-
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
   Future choose_image_gallery() async {
-    try {
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
 
-      if (image == null) return;
+    try {
+      //final image = await ImagePicker.pickImage(source: ImageSource.gallery);
+      final image = await picker.pickImage(source: ImageSource.gallery);
+
+
+       if (image == null) return;
+
 
       final imageTemp = File(image.path);
-
+     print(imageTemp);
       setState(() => this._image = imageTemp);
     } on PlatformException catch (e) {
       print('Failed to pick image: $e');
@@ -38,7 +47,8 @@ class _Send_data_With_ImageState extends State<Send_data_With_Image> {
 
   Future choose_image_camera() async {
     try {
-      final image = await ImagePicker().pickImage(source: ImageSource.camera);
+     // final image = await ImagePicker.pickImage(source: ImageSource.camera);
+      final image = await picker.pickImage(source: ImageSource.camera);
 
       if (image == null) return;
 
@@ -50,14 +60,22 @@ class _Send_data_With_ImageState extends State<Send_data_With_Image> {
     }
   }
 
-  Future uploadImage() async {
+  Future updateImage() async {
     final uri = Uri.parse(
-        "http://$ip_address/internship_crud/add_data_with_image.php");
+        "http://$ip_address/internship_crud/update_data_with_image.php");
     var request = http.MultipartRequest('POST', uri);
+    request.fields['id'] =  widget.data_user.id.toString();
     request.fields['price'] = price.text;
     request.fields['name'] = name.text;
-    var pic = await http.MultipartFile.fromPath("image", _image.path);
-    request.files.add(pic);
+    print(request.fields['name']);
+    if(_image!=null)
+    {
+      var pic = await http.MultipartFile.fromPath("image", _image.path);
+      // var pic = await http.MultipartFile.fromPath("image", _image.path);
+      print("**********************************");
+      print(_image);
+      request.files.add(pic);
+    }
     var response = await request.send();
     print(response);
 
@@ -66,12 +84,13 @@ class _Send_data_With_ImageState extends State<Send_data_With_Image> {
       price.clear();
       name.clear();
 
-
       final snackBar = await SnackBar(
-        content: const Text('data send Successfully!'),
+        content: const Text('Updated Successfully!'),
         action: SnackBarAction(
           label: 'Ok',
           onPressed: () {
+            //Navigator.pop(context);
+            // Some code to undo the change.
           },
         ),
       );
@@ -81,14 +100,24 @@ class _Send_data_With_ImageState extends State<Send_data_With_Image> {
     }
     setState(() {});
   }
+@override
+  void initState() {
 
+  name = TextEditingController(text: widget.data_user.name);
+  price = TextEditingController(text: widget.data_user.price);
+
+
+
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
-          "Send data with image",
+          "Add craft shop item",
           style: GoogleFonts.prompt(color: Colors.pink.shade300),
         ),
         backgroundColor: Colors.white,
@@ -132,7 +161,7 @@ class _Send_data_With_ImageState extends State<Send_data_With_Image> {
                           color: Colors.black,
                         ),
                       ),
-                      hintText: "enter name",
+                      hintText: "enter craft name",
                       hintStyle: TextStyle(color: Colors.grey),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -184,6 +213,7 @@ class _Send_data_With_ImageState extends State<Send_data_With_Image> {
                     ),
                     onPressed: () {
                       choose_image_gallery();
+
                     },
                   ),
                   IconButton(
@@ -208,17 +238,18 @@ class _Send_data_With_ImageState extends State<Send_data_With_Image> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(15),
                       child: _image != null
-                          ? Image.file(
-                              _image,
-                              fit: BoxFit.cover,
-                            )
-                          : Center(
-                              child: Text(
-                              "No image selected",
-                              style: GoogleFonts.hindVadodara(
-                                  fontSize: 13, color: Colors.red.shade900),
-                            )),
-                    )),
+                          ?
+                        Image.file(
+                        _image,
+                        fit: BoxFit.cover,
+                      )
+
+                          : Image.network(widget.data_user.image,
+                         fit: BoxFit.cover ,
+                      ),
+
+                    )
+                ),
               ),
               SizedBox(
                 height: 15,
@@ -232,13 +263,13 @@ class _Send_data_With_ImageState extends State<Send_data_With_Image> {
                 ),
                 onPressed: () {
                   setState(() {});
-                  uploadImage();
+                  updateImage();
+                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Display_Data_with_image()));
                 },
-                child: Text('Submit'),
+                child: Text('Update'),
               ),
-              SizedBox(
-                height: 15,
-              ),
+
+
             ],
           ),
         ),

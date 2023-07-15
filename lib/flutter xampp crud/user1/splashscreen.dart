@@ -2,13 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'login page.dart';
 import 'homepage.dart';
+import 'login page.dart';
 
 
 
-var session_Key;
-
+var key_value;
+var Admin_key;
 class Splashscreen extends StatefulWidget {
   _SplashscreenState createState() => _SplashscreenState();
 }
@@ -18,7 +18,7 @@ class _SplashscreenState extends State<Splashscreen> {
   void initState() {
     getValidationData().whenComplete(() async {
       await Timer(Duration(seconds: 1), () {
-        session_Key == null
+        key_value == null
             ? Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
@@ -27,7 +27,7 @@ class _SplashscreenState extends State<Splashscreen> {
                 context,
                 MaterialPageRoute(
                     builder: (BuildContext context) =>
-                        HomePage()));
+                        Home_Page()));
       });
     });
     setState(() {});
@@ -60,12 +60,21 @@ class _SplashscreenState extends State<Splashscreen> {
     );
   }
 
+  // Future getValidationData() async {
+  //   final SharedPreferences sharedprefs = await SharedPreferences.getInstance();
+  //   var obtainedemail = await sharedprefs.getString('key');
+  //   setState(() {
+  //     key_value = obtainedemail;
+  //   });
+  //   print('this is session value $key_value');
+  // }
+
   Future getValidationData() async {
     final SharedPreferences sharedprefs = await SharedPreferences.getInstance();
-    var obtainedemail = await sharedprefs.getString('get_id');
+    var obtainedemail = await sharedprefs.getString('admin_id');
     setState(() {
-      session_Key = obtainedemail;
+      Admin_key = obtainedemail;
     });
-    print('this is session value $session_Key');
+    print('thisis service  value $Admin_key');
   }
 }

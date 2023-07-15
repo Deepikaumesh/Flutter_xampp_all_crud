@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_xampp_crud/flutter%20xampp%20crud/user1/splashscreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Registration.dart';
 import 'homepage.dart';
@@ -97,11 +98,11 @@ class _loginpageState extends State<loginpage> {
                 //async
                 {
                   setState(() {
-                    Login();
+                    admin_Login();
                   });
 
                   if (formkey.currentState!.validate()) {
-                    print("Successfully  logged admin");
+                    print("session id is $key_value");
 
                   }
                 },
@@ -138,8 +139,72 @@ class _loginpageState extends State<loginpage> {
     );
   }
 
-  Future Login() async {
-    var url = "http://192.168.29.64/internship_crud/Login.php";
+  // Future Login() async {
+  //   //var url = "http://192.168.29.64/internship_crud/Login.php";
+  //   var url ="http://192.168.29.64/internship_crud/Login2.php";
+  //   var response = await http.post(Uri.parse(url), headers: {
+  //     'Accept': 'application/json'
+  //   }, body: {
+  //     "username": username.text,
+  //     "password": password.text,
+  //   });
+  //
+  //   var data = json.decode(response.body);
+  //   // if (data.toString() == "Success") {
+  //   if (data != null) {
+  //     //var responseData = json.decode(response.body);
+  //
+  //     for (var singleUser in data) {
+  //       final SharedPreferences sharedpreferences =
+  //       await SharedPreferences.getInstance();
+  //
+  //       await sharedpreferences.setString('key',singleUser["id"]);
+  //      // print(singleUser["id"]);
+  //
+  //     //   session_Key = singleUser["id"];
+  //       //
+  //       // email_text_admin = singleUser["email"];
+  //       // print('hello click ${email_text_admin}');
+  //
+  //       // getid = singleUser["id"];
+  //
+  //       // getId();
+  //       // getemail();
+  //     }
+  //
+  //     final snackBar = SnackBar(
+  //       content: Text('Login Successfull'),
+  //       action: SnackBarAction(
+  //         label: 'Ok',
+  //         onPressed: () {
+  //           // Some code to undo the change.
+  //         },
+  //       ),
+  //     );
+  //
+  //     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  //
+  //     Navigator.pushReplacement(
+  //         context,
+  //         MaterialPageRoute(
+  //             builder: (BuildContext context) =>
+  //                 HomePage()));
+  //   } else {
+  //     final snackBar = SnackBar(
+  //       content: Text('Username and password invalid'),
+  //       action: SnackBarAction(
+  //         label: 'Undo',
+  //         onPressed: () {
+  //           // Some code to undo the change.
+  //         },
+  //       ),
+  //     );
+  //
+  //     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  //   }
+  // }
+  Future admin_Login() async {
+    var url = "http://192.168.29.64/internship_crud/Login2.php";
     var response = await http.post(Uri.parse(url), headers: {
       'Accept': 'application/json'
     }, body: {
@@ -156,16 +221,15 @@ class _loginpageState extends State<loginpage> {
         final SharedPreferences sharedpreferences =
         await SharedPreferences.getInstance();
 
-        await sharedpreferences.setString('get_id', singleUser["id"]);
-        print(singleUser["id"]);
+        await sharedpreferences.setString('admin_id', singleUser["id"]);
 
         // admin_id = singleUser["id"];
         //
         // email_text_admin = singleUser["email"];
         // print('hello click ${email_text_admin}');
-
-        // getid = singleUser["id"];
-
+        //
+        // // getid = singleUser["id"];
+        //
         // getId();
         // getemail();
       }
@@ -186,7 +250,7 @@ class _loginpageState extends State<loginpage> {
           context,
           MaterialPageRoute(
               builder: (BuildContext context) =>
-                  HomePage()));
+                  Home_Page()));
     } else {
       final snackBar = SnackBar(
         content: Text('Username and password invalid'),

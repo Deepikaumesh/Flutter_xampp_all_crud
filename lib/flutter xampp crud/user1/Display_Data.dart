@@ -64,7 +64,7 @@ class _Display_DataState extends State<Display_Data> {
             "Display Data",
           ),
         ),
-        body: Scaffold(
+      //  body: Scaffold(
           body: Container(
             padding: EdgeInsets.all(16.0),
             child: FutureBuilder(
@@ -127,10 +127,10 @@ class _Display_DataState extends State<Display_Data> {
 
                                         setState(() {
                                           delrecord(snapshot.data[index].id);
-                                          Navigator.pushReplacement(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>  Display_Data()));
+                                          // Navigator.pushReplacement(
+                                          //     context,
+                                          //     MaterialPageRoute(
+                                          //         builder: (context) =>  Display_Data()));
 
 
                                         });
@@ -163,7 +163,7 @@ class _Display_DataState extends State<Display_Data> {
             ),
           ),
         ),
-      ),
+    //  ),
     );
   }
 
@@ -175,6 +175,13 @@ class _Display_DataState extends State<Display_Data> {
     });
     var resoponse = jsonDecode(res.body);
     if (resoponse["success"] == "true") {
+      setState(() {
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>  Display_Data()));
+
+      });
 print("success");
     }
   }
