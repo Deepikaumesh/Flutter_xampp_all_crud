@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_xampp_crud/flutter%20firebase%20Authentication/phone.dart';
 
+import '../Firebase_Image2/Firebase_image_main_Page.dart';
+import '../Firebase_image/item_list.dart';
 import 'SignIn_Page.dart';
 import 'package:flutter_appavailability/flutter_appavailability.dart';
 
@@ -86,15 +88,29 @@ class _Home_Page_aState extends State<Home_Page_a> {
           ),
 
 
-          InkWell(
-              onTap: (){
+          Center(
+            child: InkWell(
+                onTap: (){
 
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (Buildcontext) => MyPhone()));
-              },
-              child: Text("Verify Mobile",style: TextStyle(fontSize: 15,color: Colors.red.shade900,),)),
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (Buildcontext) => MyPhone()));
+                },
+                child: Text("Verify Mobile",style: TextStyle(fontSize: 15,color: Colors.red.shade900,),)),
+          ),
+SizedBox(height: 30,),
+          Center(
+            child: InkWell(
+                onTap: (){
+
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (Buildcontext) => Firebase_image2_Mainpage()));
+                },
+                child: Text("image ",style: TextStyle(fontSize: 15,color: Colors.red.shade900,),)),
+          ),
 
 
         ],

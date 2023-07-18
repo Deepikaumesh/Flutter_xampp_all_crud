@@ -5,7 +5,7 @@ import 'package:flutter_xampp_crud/flutter%20firebase%20Authentication/verify.da
 
 class MyPhone extends StatefulWidget {
   const MyPhone({Key? key}) : super(key: key);
-  static String verify = "";
+ static String verify = "";
 
   @override
   State<MyPhone> createState() => _MyPhoneState();

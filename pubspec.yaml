@@ -44,7 +44,7 @@ dependencies:
   http:
   shared_preferences:
   fluttertoast:
-  image_picker:
+  image_picker: ^1.0.1
   google_fonts:
   geolocator:
   geocoding:
@@ -58,6 +58,13 @@ dependencies:
   flutter_appavailability:
   url_launcher: ^6.1.10
   pinput: ^2.2.11
+  firebase_crashlytics:
+  google_sign_in: ^5.3.3
+  file_picker:
+
+
+
+
 
 dev_dependencies:
   flutter_test:

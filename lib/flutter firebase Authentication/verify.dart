@@ -42,16 +42,16 @@ class _MyVerifyState extends State<MyVerify> {
       ),
     );
 
-    final focusedPinTheme = defaultPinTheme.copyDecorationWith(
-      border: Border.all(color: Color.fromRGBO(114, 178, 238, 1)),
-      borderRadius: BorderRadius.circular(8),
-    );
+    // final focusedPinTheme = defaultPinTheme.copyDecorationWith(
+    //   border: Border.all(color: Color.fromRGBO(114, 178, 238, 1)),
+    //   borderRadius: BorderRadius.circular(8),
+    // );
 
-    final submittedPinTheme = defaultPinTheme.copyWith(
-      decoration: defaultPinTheme.decoration?.copyWith(
-        color: Color.fromRGBO(234, 239, 243, 1),
-      ),
-    );
+    // final submittedPinTheme = defaultPinTheme.copyWith(
+    //   decoration: defaultPinTheme.decoration?.copyWith(
+    //     color: Color.fromRGBO(234, 239, 243, 1),
+    //   ),
+    // );
 
     var  code = "";
 
