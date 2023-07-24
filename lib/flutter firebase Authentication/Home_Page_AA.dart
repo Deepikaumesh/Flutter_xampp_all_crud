@@ -6,8 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_xampp_crud/flutter%20firebase%20Authentication/phone.dart';
 
+
 import '../Firebase_File_Display/Firebase_File_display.dart';
 import '../Firebase_File_upload/Firebase_file_upload_main_Page.dart';
+import '../Image_send_and _Display/image_send_and _display.dart';
 import 'SignIn_Page.dart';
 import 'package:flutter_appavailability/flutter_appavailability.dart';
 
@@ -131,6 +133,22 @@ SizedBox(height: 30,),
                 },
                 child: Text("File Display",style: TextStyle(fontSize: 15,color: Colors.red.shade900,),)),
           ),
+
+          SizedBox(height: 30,),
+          Center(
+            child: InkWell(
+                onTap: (){
+
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (Buildcontext) => image_send_and_display()));
+                },
+                child: Text("image send display ",style: TextStyle(fontSize: 15,color: Colors.red.shade900,),)),
+          ),
+
+
+
 
 
 
