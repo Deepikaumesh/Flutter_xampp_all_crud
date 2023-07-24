@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_xampp_crud/flutter%20firebase%20Authentication/phone.dart';
 
-import '../Firebase_Image2/Firebase_image_main_Page.dart';
-import '../Firebase_image/item_list.dart';
+import '../Firebase_File_Display/Firebase_File_display.dart';
+import '../Firebase_File_upload/Firebase_file_upload_main_Page.dart';
 import 'SignIn_Page.dart';
 import 'package:flutter_appavailability/flutter_appavailability.dart';
 
@@ -45,6 +45,7 @@ class _Home_Page_aState extends State<Home_Page_a> {
       ),
       body: ListView(
         children: [
+          SizedBox(height: 50,),
           // auth.currentUser!.emailVerified?SizedBox(height: 1,):
           //     Text("${auth.currentUser!.email!} not verified"),
           // SizedBox(
@@ -52,7 +53,13 @@ class _Home_Page_aState extends State<Home_Page_a> {
           // ),
 
 //          Text(auth.currentUser!.email!),
-          Text(auth.currentUser!.emailVerified ? "email verified" : "email not verified"),
+         // Center(child: Text(auth.currentUser!.emailVerified ? "email verified" : "email not verified")),
+
+          Center(child: auth.currentUser!.emailVerified ?Text("Email Verified",style: TextStyle(color: Colors.green.shade900),) : Text("Email not verified")),
+
+
+
+
           auth.currentUser!.emailVerified
               ? SizedBox(
             height: 1,
@@ -86,7 +93,7 @@ class _Home_Page_aState extends State<Home_Page_a> {
             },
             child: Text("verify now!"),
           ),
-
+SizedBox(height: 50,),
 
           Center(
             child: InkWell(
@@ -97,7 +104,7 @@ class _Home_Page_aState extends State<Home_Page_a> {
                       MaterialPageRoute(
                           builder: (Buildcontext) => MyPhone()));
                 },
-                child: Text("Verify Mobile",style: TextStyle(fontSize: 15,color: Colors.red.shade900,),)),
+                child: Text("Verify Mobile",style: TextStyle(fontSize: 15,color: Colors.orange,),)),
           ),
 SizedBox(height: 30,),
           Center(
@@ -107,10 +114,24 @@ SizedBox(height: 30,),
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (Buildcontext) => Firebase_image2_Mainpage()));
+                          builder: (Buildcontext) => Firebase_file_upload_Mainpage()));
                 },
-                child: Text("image ",style: TextStyle(fontSize: 15,color: Colors.red.shade900,),)),
+                child: Text("File Upload",style: TextStyle(fontSize: 15,color: Colors.teal,),)),
           ),
+
+          SizedBox(height: 30,),
+          Center(
+            child: InkWell(
+                onTap: (){
+
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (Buildcontext) => file_crud()));
+                },
+                child: Text("File Display",style: TextStyle(fontSize: 15,color: Colors.red.shade900,),)),
+          ),
+
 
 
         ],
