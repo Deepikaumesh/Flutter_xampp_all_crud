@@ -61,6 +61,7 @@ dependencies:
   firebase_crashlytics:
   google_sign_in: ^5.3.3
   file_picker:
+  intl:
 
 
 

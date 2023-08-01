@@ -27,12 +27,15 @@ class _image_send_and_displayState extends State<image_send_and_display> {
   //File? fileTodisplay;
   var fileTodisplay;
   UploadTask? uploadTask;
-  var urlDownload;
+
+  //var urlDownload;
 
   String imageName = '';
   XFile? imagePath;
-  final ImagePicker _picker = ImagePicker();
+
+  // final ImagePicker _picker = ImagePicker();
   var descriptioncontroller = new TextEditingController();
+  var imag_name = new TextEditingController();
   FirebaseFirestore firestoreRef = FirebaseFirestore.instance;
   FirebaseStorage storageRef = FirebaseStorage.instance;
 
@@ -41,6 +44,7 @@ class _image_send_and_displayState extends State<image_send_and_display> {
     // TODO: implement initState
     isLoading = false;
     descriptioncontroller = TextEditingController();
+    imag_name = TextEditingController();
     super.initState();
   }
 
@@ -50,7 +54,11 @@ class _image_send_and_displayState extends State<image_send_and_display> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: isLoading
-              ? Center(child: CircularProgressIndicator())
+              ? Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 160, vertical: 360),
+                  child: CircularProgressIndicator(),
+                )
               : Column(
                   children: [
                     fileTodisplay == null
@@ -153,8 +161,6 @@ class _image_send_and_displayState extends State<image_send_and_display> {
       setState(() {
         isLoading = false;
         descriptioncontroller.clear();
-        // descriptioncontroller.text ="" ;
-        imageName = "";
       });
     });
   }
@@ -181,8 +187,6 @@ class _image_send_and_displayState extends State<image_send_and_display> {
   }
 }
 
-
-
 class Display_Data_Image extends StatefulWidget {
   const Display_Data_Image({Key? key}) : super(key: key);
 
@@ -191,53 +195,22 @@ class Display_Data_Image extends StatefulWidget {
 }
 
 class _Display_Data_ImageState extends State<Display_Data_Image> {
+  var descriptioncontroller = new TextEditingController();
+
+
 
   FirebaseFirestore firestoreRef = FirebaseFirestore.instance;
   FirebaseStorage storageRef = FirebaseStorage.instance;
-  final CollectionReference _reference = FirebaseFirestore.instance.collection("Image");
+  final CollectionReference _reference =
+      FirebaseFirestore.instance.collection("Image");
 
   String collectionName = "Image";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-
-      ),
-      body:
-      // Expanded(
-      //   child: FutureBuilder<QuerySnapshot>(
-      //       future: firestoreRef.collection(collectionName).get(),
-      //       builder: (context,snapshot){
-      //         if(snapshot.connectionState ==ConnectionState.waiting ){
-      //           return Center(
-      //             child:CircularProgressIndicator(),
-      //           );
-      //         }
-      //         else if(snapshot.hasData){
-      //           return ListView.builder(
-      //               itemCount: 2,
-      //               itemBuilder: (context,index){
-      //                 return  Card(
-      //                   child: Column(
-      //                     children: [
-      //                       Image.network("",
-      //                         height: 100,
-      //                         width: 100,
-      //                         fit: BoxFit.fill,),
-      //                       SizedBox(width: 10,),
-      //                       Text(""),
-      //
-      //                     ],
-      //                   ),
-      //                 );
-      //
-      //               });
-      //
-      //         }
-      //
-      //   }),),
-
-      StreamBuilder(
+      appBar: AppBar(),
+      body: StreamBuilder(
           stream: _reference.snapshots(),
           builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
             if (streamSnapshot.hasData) {
@@ -245,13 +218,16 @@ class _Display_Data_ImageState extends State<Display_Data_Image> {
                   itemCount: streamSnapshot.data!.docs.length,
                   itemBuilder: (context, index) {
                     final DocumentSnapshot documentSnapshot =
-                    streamSnapshot.data!.docs[index];
+                        streamSnapshot.data!.docs[index];
                     return Card(
                       margin: EdgeInsets.all(10),
                       child: ListTile(
-                      leading: CircleAvatar(
-                        radius: 20,
-                        backgroundImage:NetworkImage(documentSnapshot['image'],),),
+                        leading: CircleAvatar(
+                          radius: 20,
+                          backgroundImage: NetworkImage(
+                            documentSnapshot['image'],
+                          ),
+                        ),
                         title: Text(documentSnapshot['description'].toString()),
                         trailing: SizedBox(
                           width: 100,
@@ -259,6 +235,7 @@ class _Display_Data_ImageState extends State<Display_Data_Image> {
                             children: [
                               IconButton(
                                   onPressed: () {
+                             ///      Navigator.push(context, MaterialPageRoute(builder: (context)=>Image_Data_Update_Page(description:documentSnapshot[index])));
                                    // _Update(documentSnapshot);
                                   },
                                   icon: Icon(Icons.edit)),
@@ -279,10 +256,32 @@ class _Display_Data_ImageState extends State<Display_Data_Image> {
               child: CircularProgressIndicator(),
             );
           }),
-
     );
   }
+
   Future<void> Delete(String id) async {
     await _reference.doc(id).delete();
   }
 }
+
+// class Image_Data_Update_Page extends StatefulWidget {
+// var description;
+// Image_Data_Update_Page({required this.description})
+//
+//   @override
+//   _Image_Data_Update_PageState createState() => _Image_Data_Update_PageState();
+// }
+//
+// class _Image_Data_Update_PageState extends State<Image_Data_Update_Page> {
+//
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text("Update data image"),
+//       ),
+//       body: Container(),
+//     );
+//   }
+// }
