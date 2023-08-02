@@ -284,12 +284,11 @@ class _edit_imageState extends State<edit_image> {
 
   Future<void> update_img()  async {
     if (_image != null) {
-      String fileName = _image.path
-          .split('/')
-          .last;
-      var snapshot = await FirebaseStorage.instance.ref()
-          .child('images/$fileName')
-          .putFile(_image);
+
+      String fileName = _image.path.split('/').last;
+
+      var snapshot = await FirebaseStorage.instance.ref().child('My_images/$fileName').putFile(_image);
+
       var url = await snapshot.ref.getDownloadURL();
 
        img_url = url.toString();

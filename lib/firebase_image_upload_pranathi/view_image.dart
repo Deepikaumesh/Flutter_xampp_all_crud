@@ -98,7 +98,8 @@ class _view_imageState extends State<view_image> {
                             IconButton(
                               icon: const Icon(Icons.edit,color: Colors.indigo,),
                               onPressed: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context)=>edit_image(name:document['name'],image :document['image'],id: document.id,
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=>
+                                    edit_image(name:document['name'],image :document['image'],id: document.id,
                                 )));
                               },
                             ),// icon-1

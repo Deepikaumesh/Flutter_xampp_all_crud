@@ -4,12 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-import 'flutter firebase Authentication/Home_Page_AA.dart';
-import 'flutter firebase Authentication/SignIn_Page.dart';
-import 'flutter firebase crud/Firebase_crud.dart';
-import 'flutter xampp crud/_main_Crud_home.dart';
+import 'Entrance/Main_Entrance.dart';
 
-import 'Alarm App/alarm.dart';
 
 
 
@@ -60,7 +56,8 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: isLogin ? Home_Page_a() : Sign_In_page(),
+      // home: isLogin ? Home_Page_a() : Sign_In_page(),
+      home: Main_Entrance(),
     );
   }
 }

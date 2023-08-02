@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_xampp_crud/main.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class Fb_image_LoginPage extends StatefulWidget {
+  const Fb_image_LoginPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<Fb_image_LoginPage> createState() => _Fb_image_LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _Fb_image_LoginPageState extends State<Fb_image_LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

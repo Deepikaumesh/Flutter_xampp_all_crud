@@ -5,6 +5,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_xampp_crud/Image_send_and%20_Display/test.dart';
+import 'package:flutter_xampp_crud/Image_send_and%20_Display/update_img_data.dart';
 import 'package:image_picker/image_picker.dart';
 
 class image_send_and_display extends StatefulWidget {
@@ -15,6 +17,8 @@ class image_send_and_display extends StatefulWidget {
 }
 
 class _image_send_and_displayState extends State<image_send_and_display> {
+  var id;
+
   final CollectionReference _reference =
       FirebaseFirestore.instance.collection("Image");
   String collectionName = "Image";
@@ -22,6 +26,7 @@ class _image_send_and_displayState extends State<image_send_and_display> {
   String? filename = '';
   PlatformFile? pickedfile;
   bool isLoading = false;
+
 
   //late File fileTodisplay = File('assets/assets/baby-girl.png');
   //File? fileTodisplay;
@@ -38,6 +43,7 @@ class _image_send_and_displayState extends State<image_send_and_display> {
   var imag_name = new TextEditingController();
   FirebaseFirestore firestoreRef = FirebaseFirestore.instance;
   FirebaseStorage storageRef = FirebaseStorage.instance;
+
 
   @override
   void initState() {
@@ -219,9 +225,14 @@ class _Display_Data_ImageState extends State<Display_Data_Image> {
                   itemBuilder: (context, index) {
                     final DocumentSnapshot documentSnapshot =
                         streamSnapshot.data!.docs[index];
+
+                    var ids = _reference.id;
+
+
                     return Card(
                       margin: EdgeInsets.all(10),
                       child: ListTile(
+                        subtitle: Text(ids),
                         leading: CircleAvatar(
                           radius: 20,
                           backgroundImage: NetworkImage(
@@ -235,7 +246,15 @@ class _Display_Data_ImageState extends State<Display_Data_Image> {
                             children: [
                               IconButton(
                                   onPressed: () {
-                             ///      Navigator.push(context, MaterialPageRoute(builder: (context)=>Image_Data_Update_Page(description:documentSnapshot[index])));
+                                    Navigator.push(context, MaterialPageRoute(builder: (context)=>test(
+                                      description: documentSnapshot["description"],
+                                      image: documentSnapshot["image"],
+                                    id:ids,
+                                    )));
+                                   // Navigator.push(context, MaterialPageRoute(
+                                   //     builder: (context)=>Image_Data_Update_Page(
+                                   //       description:documentSnapshot[index].description,
+                                   //       name: documentSnapshot[index].name,)));
                                    // _Update(documentSnapshot);
                                   },
                                   icon: Icon(Icons.edit)),
@@ -264,24 +283,13 @@ class _Display_Data_ImageState extends State<Display_Data_Image> {
   }
 }
 
-// class Image_Data_Update_Page extends StatefulWidget {
-// var description;
-// Image_Data_Update_Page({required this.description})
-//
-//   @override
-//   _Image_Data_Update_PageState createState() => _Image_Data_Update_PageState();
-// }
-//
-// class _Image_Data_Update_PageState extends State<Image_Data_Update_Page> {
-//
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("Update data image"),
-//       ),
-//       body: Container(),
-//     );
-//   }
-// }
+
+
+
+
+
+
+
+
+
+

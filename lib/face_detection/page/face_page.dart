@@ -76,7 +76,7 @@ class FacePage extends StatelessWidget {
 
           if (isAuthenticated) {
             Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => HomePage()),
+              MaterialPageRoute(builder: (context) => face_detection_HomePage()),
             );
           }
         },

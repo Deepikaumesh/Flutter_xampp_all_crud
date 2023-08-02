@@ -2,7 +2,7 @@
 import 'package:flutter_xampp_crud/face_detection/page/face_page.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class face_detection_HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(

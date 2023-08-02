@@ -263,15 +263,17 @@ class _image_formState extends State<image_form> {
 
     String fileName = _image.path.split('/').last;
 
-    var snapshot = await FirebaseStorage.instance.ref()
-        .child('My_images/$fileName')
-        .putFile(_image);
+    var snapshot = await FirebaseStorage.instance.ref().child('My_images/$fileName').putFile(_image);
+
     var url = await snapshot.ref.getDownloadURL();
+
     var image_url = url.toString();
+
     Map<String, dynamic> demodata = {
           "image": image_url,
           "name"  :_name.text
         };
+
       CollectionReference collectionreference =
       FirebaseFirestore.instance.collection('image_tb');
       collectionreference.add(demodata)
